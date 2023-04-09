@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-<h1>Its category '{{$category->name}}'</h1>
+<h1>{{$category->name}}</h1>
 
 <p>{{$category->description}}</p>
 

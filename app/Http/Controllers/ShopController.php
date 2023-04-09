@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,24 @@ class ShopController extends Controller
         return view('templateSingleProductPage', ['category' => $category, 'product' => $product]);
     }
     public function getCartView() {
-        return view('templateCartPage');
+        $orderId = session('orderId');
+        if(!is_null($orderId)) {
+            $order = Order::find($orderId);
+        } else {
+            $order = false;
+        }
+        return view('templateCartPage', compact('order'));
+    }
+
+    public function postAddToCart($productId) {
+       $orderId = session('orderId');
+       if(is_null($orderId)) {
+           $orderId = Order::create()->id;
+            session(['orderId' => $orderId]);
+       }
+       $order = Order::find($orderId);
+       $order->products()->attach($productId);
+
+        return view('templateCartPage', compact('order'));
     }
 }
