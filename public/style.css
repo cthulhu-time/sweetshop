@@ -45,3 +45,8 @@ nav {
     display: flex;
     flex-wrap: wrap;
 }
+
+.category-card {
+    padding-left: 10px;
+    border-left: 3px black solid;
+}
