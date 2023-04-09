@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="{{asset('style.css')}}">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Drugshop</title>
+        <title>Sweetshop</title>
     </head>
     <body>
         <div id="site_content">
