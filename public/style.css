@@ -1,0 +1,35 @@
+#site_content {
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+nav {
+    display: flex;
+}
+
+.icon img {
+    width: 120px;
+    height: 120px;
+}
+
+.nav_list {
+    width: 100%;
+}
+
+.nav_list ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.news_card {
+    border: 2px black solid;
+    width: 20%;
+    margin: 25px;
+    padding: 5px;
+    padding-bottom: 20px;
+}
+
+.news_section {
+    display: flex;
+    flex-wrap: wrap;
+}
