@@ -13,4 +13,12 @@ class Product extends Model
         $category = Category::where('id', $this->category_id)->first();
         return $category;
     }
+
+    public function getPriceForCount() {
+        if(!is_null($this->pivot)) {
+            return $this->pivot->count * $this->price;
+        } else {
+            return 0;
+        }
+    }
 }

@@ -44,8 +44,37 @@ class ShopController extends Controller
             session(['orderId' => $orderId]);
        }
        $order = Order::find($orderId);
-       $order->products()->attach($productId);
 
-        return view('templateCartPage', compact('order'));
+        if($order->products->contains($productId)) {
+            $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
+            $pivotRow->count++;
+            $pivotRow->update();
+        } else {
+            $order->products()->attach($productId);
+        }
+
+       //return view('templateCartPage', compact('order'));
+        return redirect()->route('cart');
+    }
+
+    public function postRemoveFromCart($productId) {
+        $orderId = session('orderId');
+        if(is_null($orderId)) {
+            return false;
+        }
+        $order = Order::find($orderId);
+
+        if($order->products->contains($productId)) {
+            $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
+            if($pivotRow->count === 1) {
+                $order->products()->detach($productId);
+            } else {
+                $pivotRow->count--;
+                $pivotRow->update();
+            }
+        }
+
+        //return view('templateCartPage', compact('order'));
+        return redirect()->route('cart');
     }
 }

@@ -14,6 +14,8 @@ Route::get('/cart', [\App\Http\Controllers\ShopController::class, 'getCartView']
 
 Route::post('/cart/add/{id}', [\App\Http\Controllers\ShopController::class, 'postAddToCart'])->name('cart-add');
 
+Route::post('/cart/remove/{id}', [\App\Http\Controllers\ShopController::class, 'postRemoveFromCart'])->name('cart-remove');
+
 //Dynamic routes should be down
 Route::get('/{category}/', [\App\Http\Controllers\ShopController::class, 'getCategoryPageView'])->name('category');
 
