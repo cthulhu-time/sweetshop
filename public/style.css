@@ -50,3 +50,21 @@ nav {
     padding-left: 10px;
     border-left: 3px black solid;
 }
+
+.counter-btn {
+    width: 30px;
+}
+
+.counter-btn-minus {
+    color: white;
+    background-color: black;
+}
+
+.counter-btn-plus {
+    color: black;
+    background-color: white;
+}
+
+.item-counters {
+    display: flex;
+}

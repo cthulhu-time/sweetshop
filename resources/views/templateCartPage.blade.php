@@ -7,18 +7,18 @@
        <ul class="cart-items">
        @foreach($order->products as $product)
            <li class="cart-item">
-               <div>
-                   <a href="{{route('product', [$product->getCategory()->code,$product->code])}}">{{$product->name}} x {{$product->pivot->count}}</a>
-                   <form action="{{route('cart-add', $product)}}" method="POST">
-                       <button type="submit">Add more</button>
-                       @csrf
-                   </form>
+               <div class="item-counters">
+                   <a href="{{route('product', [$product->getCategory()->code,$product->code])}}">{{$product->name}} <b>x {{$product->pivot->count}}</b></a>
                    <form action="{{route('cart-remove', $product)}}" method="POST">
-                       <button type="submit">Remove</button>
+                       <button class="counter-btn counter-btn-minus" type="submit">-</button>
                        @csrf
                    </form>
-                   <p>{{$product->getPriceForCount()}}$</p>
+                   <form action="{{route('cart-add', $product)}}" method="POST">
+                       <button class="counter-btn counter-btn-plus" type="submit">+</button>
+                       @csrf
+                   </form>
                </div>
+               <p>{{$product->getPriceForCount()}}$</p>
            </li>
        @endforeach
        </ul>
